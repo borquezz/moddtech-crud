@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router";
 // Material UI Components
 import {
   Avatar,
@@ -13,6 +14,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function Card(props) {
+  const navigate = useNavigate();
   // Possible colors for avatar component
   const avatarColors = [
     "#00AA55",
@@ -51,7 +53,9 @@ function Card(props) {
       </ListItemAvatar>
       <ListItemText primary={props.client.name} />
       <ListItemIcon sx={{ justifyContent: "end" }}>
-        <IconButton>
+        <IconButton
+          onClick={() => navigate("/edit", { state: { client: props.client } })}
+        >
           <EditIcon />
         </IconButton>
       </ListItemIcon>

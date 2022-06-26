@@ -9,12 +9,6 @@ function Home() {
     { name: "Fernando Borquez", code: "ABC123" },
     { name: "John Doe", code: "J2ASJ4" },
     { name: "Greg Foster", code: "IA34N6" },
-    // { name: "Fernando Borquez", code: "ABC123" },
-    // { name: "John Doe", code: "J2ASJ4" },
-    // { name: "Greg Foster", code: "IA34N6" },
-    // { name: "Fernando Borquez", code: "ABC123" },
-    // { name: "John Doe", code: "J2ASJ4" },
-    // { name: "Greg Foster", code: "IA34N6" },
   ];
   return (
     <>

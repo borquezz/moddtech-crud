@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -8,6 +9,8 @@ import FaceIcon from "@mui/icons-material/Face";
 import AddIcon from "@mui/icons-material/Add";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <AppBar position="sticky">
       <Container maxWidth="sm" sx={{ display: "flex" }}>
@@ -50,7 +53,12 @@ const Header = () => {
             display: "flex",
           }}
         >
-          <IconButton size="large" aria-label="add client" color="inherit">
+          <IconButton
+            size="large"
+            aria-label="add client"
+            color="inherit"
+            onClick={() => navigate("/add")}
+          >
             <AddIcon />
           </IconButton>
         </Box>
