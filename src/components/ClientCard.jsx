@@ -70,7 +70,12 @@ function Card(props) {
           <DeleteIcon />
         </IconButton>
       </ListItemIcon>
-      <FormDialog title="Edit Client" open={open} handleClose={handleClose} />
+      {/* <FormDialog
+        title="Edit Client"
+        client={props.client}
+        open={open}
+        handleClose={handleClose}
+      /> */}
     </ListItem>
   );
 }

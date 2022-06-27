@@ -61,7 +61,7 @@ const Header = (props) => {
             display: "flex",
           }}
         >
-          {props?.icon == "add" ? (
+          {props?.icon === "add" ? (
             <IconButton
               size="large"
               aria-label="add client"
