@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+// Material UI Components
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -6,14 +7,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+//Axios
 import axios from "../api/axios";
+// Redux actions & reducers
 import { useDispatch } from "react-redux";
 import { setClients } from "../slices/clientsSlice";
 
 function FormDialog(props) {
+  // Form input states
   const [name, setName] = useState(props.client?.name || "");
   const [code, setCode] = useState(props.client?.code || "");
-
   const [states, setStates] = useState([]);
   const [currentState, setCurrentState] = useState(
     props.client?.state?.code || ""
@@ -23,8 +26,10 @@ function FormDialog(props) {
     props.client?.city?.code || ""
   );
 
+  // Redux dispatch
   const dispatch = useDispatch();
 
+  // When component renders
   useEffect(() => {
     // Function to fetch states
     const getStates = async () => {
@@ -64,10 +69,12 @@ function FormDialog(props) {
   };
 
   const handleSubmit = async (e) => {
+    // Get state & city objects based on current ones
     const stateObj = states.find((state) => state.code === currentState);
 
     const cityObj = cities.find((city) => city.code === currentCity);
 
+    // Add client endpoint
     const response = await axios.post("/client/add", {
       name,
       code,

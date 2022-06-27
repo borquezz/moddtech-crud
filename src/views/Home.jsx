@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+// Material UI
 import { Grid } from "@mui/material";
-import React from "react";
+// Components
 import SearchBar from "../components/SearchBar";
 import ClientCard from "../components/ClientCard";
 import Header from "../components/Header";
@@ -14,7 +15,7 @@ function Home() {
   // Clients state from redux
   const clients = useSelector((state) => state.clients.clients);
   const search = useSelector((state) => state.clients.search);
-
+  // Redux dispatch
   const dispatch = useDispatch();
 
   // Fetch clients endpoint each time the view renders or updates

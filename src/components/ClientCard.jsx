@@ -11,24 +11,26 @@ import {
 // Material UI Icons
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+// Axios
 import axios from "../api/axios";
+// Redux actions & reducers
 import { useDispatch } from "react-redux";
 import { setClients } from "../slices/clientsSlice";
+// Edit Component
 import FormDialogEdit from "./FormDialogEdit";
 
 function Card(props) {
+  // State of edit modal
   const [open, setOpen] = useState(false);
 
+  // Redux dispatch
   const dispatch = useDispatch();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleClickOpen = () => setOpen(true);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClose = () => setOpen(false);
 
+  // Function to handle when client is deleted
   const handleDelete = async () => {
     // Delete client
     const deleteResponse = await axios.put("/client/delete", {

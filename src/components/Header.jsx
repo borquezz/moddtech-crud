@@ -1,4 +1,5 @@
 import { useState } from "react";
+// Material UI
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -6,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import FaceIcon from "@mui/icons-material/Face";
 import AddIcon from "@mui/icons-material/Add";
+// Components
 import FormDialog from "./FormDialog";
 
 const Header = (props) => {

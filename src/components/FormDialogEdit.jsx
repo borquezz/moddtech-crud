@@ -61,6 +61,7 @@ function FormDialogEdit(props) {
   };
 
   const handleSubmit = async (e) => {
+    // Get state & city object based on current one
     const stateObj = states.find((state) => state.code === currentState);
 
     const cityObj = cities.find((city) => city.code === currentCity);

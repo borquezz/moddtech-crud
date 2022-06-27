@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../slices/clientsSlice";
 
 function SearchBar(props) {
+  // Input text state
   const [input, setInput] = useState("");
+  // State stored in redux. Same as input but .toLowerCase()
   const search = useSelector((state) => state.clients.search);
+  // Redux dispatch
   const dispatch = useDispatch();
-  // const [client, setClient] = useState("");
 
   const handleInputChange = (e) => {
     setInput(e.target.value);

@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Initial slice state
 const initialState = {
   clients: [],
   search: "",
 };
 
+// Slice creation
 export const clientsSlice = createSlice({
   name: "clients",
   initialState,
