@@ -13,6 +13,7 @@ import { setClients } from "../slices/clientsSlice";
 function Home() {
   // Clients state from redux
   const clients = useSelector((state) => state.clients.clients);
+  const search = useSelector((state) => state.clients.search);
 
   const dispatch = useDispatch();
 
@@ -34,6 +35,24 @@ function Home() {
     console.log(clients);
   }, [setClients]);
 
+  // Display client cards depending on search state
+  const clientList = () => {
+    //create a new array by filtering the original array
+    const filteredData = clients.filter((client) => {
+      //if no input the return the original
+      if (search === "") {
+        return client;
+      }
+      //return the item which contains the user input
+      else {
+        return client.name.toLowerCase().includes(search);
+      }
+    });
+    return filteredData.map((client) => (
+      <ClientCard key={client.code} client={client} />
+    ));
+  };
+
   return (
     <>
       {/* Header */}
@@ -49,17 +68,15 @@ function Home() {
         <SearchBar placeholder={"Search client"} />
       </Grid>
 
-      {/* Users Grid */}
+      {/* Clients Grid */}
       <Grid
         container
         direction="column"
         justifyContent="space-evenly"
         alignItems="center"
       >
-        {/* Map each client in state to its own client card */}
-        {clients.map((client) => {
-          return <ClientCard key={client.code} client={client} />;
-        })}
+        {/* Display client list */}
+        {clientList()}
       </Grid>
     </>
   );

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   clients: [],
+  search: "",
 };
 
 export const clientsSlice = createSlice({
@@ -11,9 +12,12 @@ export const clientsSlice = createSlice({
     setClients: (state, action) => {
       state.clients = action.payload;
     },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+    },
   },
 });
 
-export const { setClients } = clientsSlice.actions;
+export const { setClients, setSearch } = clientsSlice.actions;
 
 export default clientsSlice.reducer;
