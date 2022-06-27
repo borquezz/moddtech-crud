@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useNavigate } from "react-router";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -7,9 +6,18 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import FaceIcon from "@mui/icons-material/Face";
 import AddIcon from "@mui/icons-material/Add";
+import FormDialog from "./FormDialog";
 
 const Header = (props) => {
-  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <AppBar position="sticky">
@@ -58,7 +66,7 @@ const Header = (props) => {
               size="large"
               aria-label="add client"
               color="inherit"
-              onClick={() => navigate("/add")}
+              onClick={handleClickOpen}
             >
               <AddIcon />
             </IconButton>
@@ -67,6 +75,7 @@ const Header = (props) => {
           )}
         </Box>
       </Container>
+      <FormDialog open={open} handleClose={handleClose} />
     </AppBar>
   );
 };

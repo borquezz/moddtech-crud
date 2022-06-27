@@ -37,6 +37,7 @@ function Home() {
         direction="column"
         justifyContent="space-evenly"
         alignItems="center"
+        marginTop={2}
       >
         <SearchBar placeholder={"Search client"} />
       </Grid>

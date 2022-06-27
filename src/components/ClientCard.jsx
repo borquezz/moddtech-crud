@@ -1,5 +1,4 @@
-import React from "react";
-import { useNavigate } from "react-router";
+import { useState } from "react";
 // Material UI Components
 import {
   Avatar,
@@ -12,19 +11,18 @@ import {
 // Material UI Icons
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import FormDialog from "./FormDialog";
 
 function Card(props) {
-  const navigate = useNavigate();
-  // Possible colors for avatar component
-  const avatarColors = [
-    "#00AA55",
-    "#009FD4",
-    "#B381B3",
-    "#939393",
-    "#E3BC00",
-    "#D47500",
-    "#DC2A2A",
-  ];
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // Get initials from name
   const getInitials = (fullName) => {
@@ -36,6 +34,16 @@ function Card(props) {
 
     return initials;
   };
+  // Possible colors for avatar component
+  const avatarColors = [
+    "#00AA55",
+    "#009FD4",
+    "#B381B3",
+    "#939393",
+    "#E3BC00",
+    "#D47500",
+    "#DC2A2A",
+  ];
 
   return (
     <ListItem sx={{ width: "90%", maxWidth: 600, marginY: 2, boxShadow: 4 }}>
@@ -53,9 +61,7 @@ function Card(props) {
       </ListItemAvatar>
       <ListItemText primary={props.client.name} />
       <ListItemIcon sx={{ justifyContent: "end" }}>
-        <IconButton
-          onClick={() => navigate("/edit", { state: { client: props.client } })}
-        >
+        <IconButton onClick={handleClickOpen}>
           <EditIcon />
         </IconButton>
       </ListItemIcon>
@@ -64,6 +70,7 @@ function Card(props) {
           <DeleteIcon />
         </IconButton>
       </ListItemIcon>
+      <FormDialog title="Edit Client" open={open} handleClose={handleClose} />
     </ListItem>
   );
 }
