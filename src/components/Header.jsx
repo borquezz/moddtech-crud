@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 import FaceIcon from "@mui/icons-material/Face";
 import AddIcon from "@mui/icons-material/Add";
 
-const Header = () => {
+const Header = (props) => {
   const navigate = useNavigate();
 
   return (
@@ -44,7 +44,7 @@ const Header = () => {
               textDecoration: "none",
             }}
           >
-            CLIENT APP
+            {props.title}
           </Typography>
         </Box>
         {/* Add Button */}
@@ -53,14 +53,18 @@ const Header = () => {
             display: "flex",
           }}
         >
-          <IconButton
-            size="large"
-            aria-label="add client"
-            color="inherit"
-            onClick={() => navigate("/add")}
-          >
-            <AddIcon />
-          </IconButton>
+          {props?.icon == "add" ? (
+            <IconButton
+              size="large"
+              aria-label="add client"
+              color="inherit"
+              onClick={() => navigate("/add")}
+            >
+              <AddIcon />
+            </IconButton>
+          ) : (
+            <></>
+          )}
         </Box>
       </Container>
     </AppBar>
