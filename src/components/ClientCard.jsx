@@ -12,9 +12,14 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FormDialog from "./FormDialog";
+import axios from "../api/axios";
+import { useDispatch } from "react-redux";
+import { setClients } from "../slices/clientsSlice";
 
 function Card(props) {
   const [open, setOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,6 +27,18 @@ function Card(props) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleDelete = async () => {
+    // Delete client
+    const deleteResponse = await axios.put("/client/delete", {
+      id: props?.client?.id,
+    });
+    /* Update the clients state */
+    // Fetch data
+    const clientsResponse = await axios.get("/client/get");
+    // Set global clients state to response
+    dispatch(setClients(clientsResponse.data));
   };
 
   // Get initials from name
@@ -66,7 +83,7 @@ function Card(props) {
         </IconButton>
       </ListItemIcon>
       <ListItemIcon sx={{ justifyContent: "end" }}>
-        <IconButton>
+        <IconButton onClick={handleDelete}>
           <DeleteIcon />
         </IconButton>
       </ListItemIcon>
