@@ -11,10 +11,10 @@ import {
 // Material UI Icons
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import FormDialog from "./FormDialog";
 import axios from "../api/axios";
 import { useDispatch } from "react-redux";
 import { setClients } from "../slices/clientsSlice";
+import FormDialogEdit from "./FormDialogEdit";
 
 function Card(props) {
   const [open, setOpen] = useState(false);
@@ -87,12 +87,12 @@ function Card(props) {
           <DeleteIcon />
         </IconButton>
       </ListItemIcon>
-      {/* <FormDialog
+      <FormDialogEdit
         title="Edit Client"
         client={props.client}
         open={open}
         handleClose={handleClose}
-      /> */}
+      />
     </ListItem>
   );
 }

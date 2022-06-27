@@ -6,23 +6,27 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+// Axios
 import axios from "../api/axios";
+// Redux hooks & reducers
 import { useDispatch } from "react-redux";
 import { setClients } from "../slices/clientsSlice";
 
-function FormDialog(props) {
+function FormDialogEdit(props) {
+  // Client states
   const [name, setName] = useState(props.client?.name || "");
   const [code, setCode] = useState(props.client?.code || "");
 
-  const [states, setStates] = useState([]);
+  const [states, setStates] = useState([props.client?.state]);
   const [currentState, setCurrentState] = useState(
     props.client?.state?.code || ""
   );
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState([props.client?.city]);
   const [currentCity, setCurrentCity] = useState(
     props.client?.city?.code || ""
   );
 
+  // Initialize dispatch hook
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,13 +53,6 @@ function FormDialog(props) {
     // Run useEffect hook each time currentState changes
   }, [currentState]);
 
-  const resetInputStates = () => {
-    setName("");
-    setCode("");
-    setCurrentState("");
-    setCurrentCity("");
-  };
-
   const handleStateChange = (event) => {
     setCurrentState(event.target.value);
   };
@@ -68,20 +65,20 @@ function FormDialog(props) {
 
     const cityObj = cities.find((city) => city.code === currentCity);
 
-    const response = await axios.post("/client/add", {
+    const response = await axios.put("/client/edit", {
+      id: props?.client?.id,
       name,
       code,
       idState: stateObj.id,
       idCity: cityObj.id,
     });
-    console.log(response.data);
+    console.log("Updated Client:", response.data);
 
     /* Update the clients state */
     // Fetch data
     const clientsResponse = await axios.get("/client/get");
     // Set global clients state to response
     dispatch(setClients(clientsResponse.data));
-    resetInputStates();
   };
 
   return (
@@ -167,4 +164,4 @@ function FormDialog(props) {
   );
 }
 
-export default FormDialog;
+export default FormDialogEdit;
